@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { selectTheme } from "@store/slices/uiSlice";
 import { Home } from "@pages/Home";
+import { Settings } from "@pages/Settings";
 import "./app.css";
 
 export default function App() {
@@ -15,6 +16,7 @@ export default function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Home />} />
+         <Route path="/settings" element={<Settings />} />
       </Routes>
     </BrowserRouter>
   );

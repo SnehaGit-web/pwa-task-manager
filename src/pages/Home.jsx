@@ -15,7 +15,11 @@ export function Home() {
   return (
     <div className="home">
       <OfflineBanner isOnline={isOnline} />
-      <Header onAddClick={() => setShowForm((v) => !v)} installPrompt={installPrompt} triggerInstall={triggerInstall} />
+      <Header
+        onAddClick={() => setShowForm((v) => !v)}
+        installPrompt={installPrompt}
+        triggerInstall={triggerInstall}
+      />
       <main className="main-content">
         {showForm && <AddTaskForm onClose={() => setShowForm(false)} />}
         <StatsBar />
