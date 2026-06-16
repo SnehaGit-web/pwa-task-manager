@@ -1,7 +1,6 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
-const { InjectManifest } = require("workbox-webpack-plugin");
 const fs = require("fs");
 
 module.exports = (env, argv) => {
@@ -16,30 +15,13 @@ module.exports = (env, argv) => {
     copyPatterns.push({ from: "public/icons", to: "icons" });
   }
 
-  const plugins = [
-    new HtmlWebpackPlugin({
-      template: "./public/index.html",
-      inject: "body",          // ← injects <script> tags into <body>
-    }),
-    new CopyWebpackPlugin({ patterns: copyPatterns }),
-  ];
-
-  if (isProd) {
-    plugins.push(
-      new InjectManifest({
-        swSrc: "./src/service-worker.js",
-        swDest: "service-worker.js",
-      })
-    );
-  }
-
   return {
     entry: "./src/index.js",
     output: {
       path: path.resolve(__dirname, "dist"),
       filename: isProd ? "[name].[contenthash].js" : "[name].js",
       clean: true,
-      publicPath: "/",        // ← must be exactly "/" for Vercel
+      publicPath: "/",
     },
     optimization: {
       splitChunks: {
@@ -67,8 +49,21 @@ module.exports = (env, argv) => {
         { test: /\.(png|svg|jpg|jpeg|gif|ico)$/i, type: "asset/resource" },
       ],
     },
-    plugins,
-    devServer: { port: 3000, hot: true, historyApiFallback: true, open: true },
+    plugins: [
+      new HtmlWebpackPlugin({
+        template: "./public/index.html",
+        inject: "body",
+      }),
+      new CopyWebpackPlugin({ patterns: copyPatterns }),
+      // Service worker (InjectManifest) intentionally disabled until
+      // core app is confirmed working on Vercel. Re-enable later.
+    ],
+    devServer: {
+      port: 3000,
+      hot: true,
+      historyApiFallback: true,
+      open: true,
+    },
     devtool: isProd ? "source-map" : "eval-source-map",
   };
 };
