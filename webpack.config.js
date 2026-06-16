@@ -11,14 +11,16 @@ module.exports = (env, argv) => {
     { from: "public/manifest.json", to: "manifest.json" },
   ];
 
-  // Only copy icons if the folder exists and has files
   const iconsDir = path.resolve(__dirname, "public/icons");
   if (fs.existsSync(iconsDir) && fs.readdirSync(iconsDir).length > 0) {
     copyPatterns.push({ from: "public/icons", to: "icons" });
   }
 
   const plugins = [
-    new HtmlWebpackPlugin({ template: "./public/index.html" }),
+    new HtmlWebpackPlugin({
+      template: "./public/index.html",
+      inject: "body",          // ← injects <script> tags into <body>
+    }),
     new CopyWebpackPlugin({ patterns: copyPatterns }),
   ];
 
@@ -37,7 +39,7 @@ module.exports = (env, argv) => {
       path: path.resolve(__dirname, "dist"),
       filename: isProd ? "[name].[contenthash].js" : "[name].js",
       clean: true,
-      publicPath: "/",
+      publicPath: "/",        // ← must be exactly "/" for Vercel
     },
     optimization: {
       splitChunks: {
@@ -51,11 +53,11 @@ module.exports = (env, argv) => {
       extensions: [".js", ".jsx"],
       alias: {
         "@components": path.resolve(__dirname, "src/components"),
-        "@hooks": path.resolve(__dirname, "src/hooks"),
-        "@store": path.resolve(__dirname, "src/store"),
-        "@services": path.resolve(__dirname, "src/services"),
-        "@utils": path.resolve(__dirname, "src/utils"),
-        "@pages": path.resolve(__dirname, "src/pages"),
+        "@hooks":      path.resolve(__dirname, "src/hooks"),
+        "@store":      path.resolve(__dirname, "src/store"),
+        "@services":   path.resolve(__dirname, "src/services"),
+        "@utils":      path.resolve(__dirname, "src/utils"),
+        "@pages":      path.resolve(__dirname, "src/pages"),
       },
     },
     module: {
