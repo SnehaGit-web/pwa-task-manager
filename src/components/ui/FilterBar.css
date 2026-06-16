@@ -1,0 +1,10 @@
+.filter-bar { display: flex; flex-direction: column; gap: 0.65rem; }
+.search-input { width: 100%; background: var(--color-surface); border: 1px solid var(--color-border); border-radius: 8px; color: var(--color-text-primary); font-size: 0.9rem; padding: 0.6rem 0.75rem; transition: border-color 0.15s; box-sizing: border-box; }
+.search-input:focus { outline: none; border-color: var(--color-accent); }
+.filter-controls { display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; }
+.filter-tabs { display: flex; background: var(--color-bg); border: 1px solid var(--color-border); border-radius: 8px; overflow: hidden; }
+.filter-tab { border: none; background: none; color: var(--color-text-muted); padding: 0.4rem 0.85rem; font-size: 0.82rem; font-weight: 500; cursor: pointer; transition: background 0.15s, color 0.15s; }
+.filter-tab.active { background: var(--color-accent); color: white; }
+.sort-select { background: var(--color-surface); border: 1px solid var(--color-border); color: var(--color-text-primary); border-radius: 8px; padding: 0.4rem 0.65rem; font-size: 0.82rem; cursor: pointer; }
+.btn-clear { margin-left: auto; background: none; border: none; color: var(--color-text-muted); font-size: 0.8rem; cursor: pointer; text-decoration: underline; }
+.btn-clear:hover { color: var(--color-danger); }

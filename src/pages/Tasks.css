@@ -1,0 +1,32 @@
+:root {
+  --color-bg:           #0f1117;
+  --color-surface:      #1a1d27;
+  --color-border:       #2a2d3a;
+  --color-accent:       #6366f1;
+  --color-success:      #22c55e;
+  --color-warning:      #f59e0b;
+  --color-danger:       #ef4444;
+  --color-text-primary: #f1f5f9;
+  --color-text-muted:   #64748b;
+}
+
+[data-theme="light"] {
+  --color-bg:           #f8fafc;
+  --color-surface:      #ffffff;
+  --color-border:       #e2e8f0;
+  --color-text-primary: #0f172a;
+  --color-text-muted:   #94a3b8;
+}
+
+.tasks-page {
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+@media (max-width: 480px) {
+  .tasks-page { padding: 1.25rem 1rem; }
+}

@@ -1,0 +1,17 @@
+.header {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0.9rem 1.5rem;
+  background: var(--color-surface);
+  border-bottom: 1px solid var(--color-border);
+  position: sticky; top: 0; z-index: 100;
+}
+.header-brand { display: flex; align-items: center; gap: 0.5rem; }
+.brand-icon { width: 28px; height: 28px; background: var(--color-accent); color: white; border-radius: 7px; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 0.85rem; }
+.brand-name { font-size: 1.1rem; font-weight: 700; color: var(--color-text-primary); letter-spacing: -0.02em; }
+.header-actions { display: flex; align-items: center; gap: 0.6rem; }
+.btn-add { background: var(--color-accent); color: white; border: none; border-radius: 8px; padding: 0.5rem 1rem; font-weight: 600; font-size: 0.85rem; cursor: pointer; transition: opacity 0.15s; }
+.btn-add:hover { opacity: 0.88; }
+.btn-icon { background: none; border: 1px solid var(--color-border); border-radius: 8px; padding: 0.45rem 0.65rem; cursor: pointer; font-size: 1rem; transition: background 0.15s; }
+.btn-icon:hover { background: var(--color-border); }
+.btn-install { background: none; border: 1px solid var(--color-accent); color: var(--color-accent); border-radius: 8px; padding: 0.45rem 0.85rem; font-size: 0.82rem; font-weight: 600; cursor: pointer; transition: background 0.15s; }
+.btn-install:hover { background: var(--color-accent); color: white; }
